@@ -40,11 +40,24 @@ session_start(); // Start the session at the top of the file
 
     <script>
         // Example: Show the login button if the user presses "Ctrl + Shift + A"
-        document.addEventListener('keydown', function(event) {
-            if (event.ctrlKey && event.shiftKey && event.key === 'A') {
-                document.getElementById('adminLoginButton').style.display = 'block';
-            }
-        });
+        document.getElementById('luckyDrawForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get form data
+    const name = document.getElementById('name').value;
+    const mobile = document.getElementById('mobile').value;
+    const bill = document.getElementById('bill').value;
+
+    // Here you could store the data in local storage or send it to an API
+    // For demonstration, we'll just use localStorage
+    localStorage.setItem('name', name);
+    localStorage.setItem('mobile', mobile);
+    localStorage.setItem('bill', bill);
+
+    // Redirect to the thank you page
+    window.location.href = 'thankyou.html?name=' + encodeURIComponent(name) + '&status=success';
+});
+
     </script>
 </body>
 </html>
